@@ -1,15 +1,11 @@
 group 'pl.estrix'
 version '1.0-SNAPSHOT'
 
-
-
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
     apply plugin: 'jacoco'
 }
-
-
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -18,7 +14,6 @@ repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
-
     maven { url "http://repo1.maven.org/maven2/" }
 }
 
@@ -40,7 +35,6 @@ task codeCoverageReport(type: JacocoReport) {
     subprojects.each {
         sourceSets it.sourceSets.main
     }
-
 
     reports {
         xml.enabled true
