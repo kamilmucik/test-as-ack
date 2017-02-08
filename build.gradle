@@ -1,10 +1,13 @@
 group 'pl.estrix'
 version '1.0-SNAPSHOT'
 
+plugins {
+    id "org.sonarqube" version "1.2"
+}
+
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
-    apply plugin: 'org.sonarqube'
     apply plugin: 'jacoco'
 }
 
