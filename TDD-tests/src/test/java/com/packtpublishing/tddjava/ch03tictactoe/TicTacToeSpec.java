@@ -4,11 +4,13 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import pl.estrix.model.test.TestDto;
 
 
 public class TicTacToeSpec {
 
     private TicTacToe ticTacToe;
+    private TestDto testObject;
 
     @Before
     public final void before(){
@@ -17,13 +19,14 @@ public class TicTacToeSpec {
 
     @Test
     public void shouldReturnEnything(){
-        System.out.print(ticTacToe.print());
-//        Assert.fail();
+        testObject = ticTacToe.print();
+        System.out.print(testObject.getName());
     }
 
     @Test
     public void shouldReturnHelloMessage(){
-        assertThat("hello").isEqualTo(ticTacToe.print() );
+        testObject = ticTacToe.print();
 
+        assertThat("hello").isEqualTo(testObject.getName() );
     }
 }

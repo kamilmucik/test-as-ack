@@ -1,8 +1,10 @@
 package com.packtpublishing.tddjava.ch03tictactoe;
 
+import pl.estrix.model.test.TestDto;
+
 class TicTacToe {
 
-    String print(){
-        return "hello";
+    TestDto print(){
+        return new TestDto(0l,"hello");
     }
 }
