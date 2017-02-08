@@ -7,5 +7,4 @@ Wersja: **1.0** zawiera:
 * lombok
 * Konfiguracja travis'a
 * Konfiguracja codecov.io
-
-> * Konfiguracja sonar'a
+* Konfiguracja sonar'a

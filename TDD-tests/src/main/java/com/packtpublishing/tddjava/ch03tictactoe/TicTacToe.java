@@ -5,9 +5,17 @@ import pl.estrix.model.test.TestDto;
 class TicTacToe {
 
     TestDto print(){
-        return TestDto
-                .builder()
-                .name("hello")
-                .build();
+        TestDto dto = null;
+
+        try {
+            dto = TestDto
+                    .builder()
+                    .name("hello")
+                    .build();
+        } finally {
+            System.out.print(dto.getName());
+        }
+
+        return dto;
     }
 }

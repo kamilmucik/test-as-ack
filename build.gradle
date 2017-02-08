@@ -52,13 +52,19 @@ subprojects {
     test.useTestNG()
 }
 
+
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
 task codeCoverageReport(type: JacocoReport) {
     executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
     subprojects.each {
         sourceSets it.sourceSets.main
     }
-
 
     reports {
         xml.enabled true
