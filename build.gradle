@@ -4,7 +4,16 @@ version '1.0-SNAPSHOT'
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
+    apply plugin: 'org.sonarqube'
     apply plugin: 'jacoco'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Simple Project :: SonarQube Scanner for Gradle"
+        property "sonar.projectKey", "org.sonarqube:java-gradle-simple"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
 }
 
 sourceCompatibility = 1.8
@@ -14,6 +23,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
+
     maven { url "http://repo1.maven.org/maven2/" }
 }
 
@@ -35,6 +45,7 @@ task codeCoverageReport(type: JacocoReport) {
     subprojects.each {
         sourceSets it.sourceSets.main
     }
+
 
     reports {
         xml.enabled true
