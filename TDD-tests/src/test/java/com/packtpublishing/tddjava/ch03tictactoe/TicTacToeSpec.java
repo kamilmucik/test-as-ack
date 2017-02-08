@@ -2,7 +2,6 @@ package com.packtpublishing.tddjava.ch03tictactoe;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.assertj.core.api.Condition;
 import org.junit.Before;
 import org.junit.Test;
 
