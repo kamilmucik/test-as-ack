@@ -1,0 +1,11 @@
+language: java
+jdk: oraclejdk8
+notifications:
+    email:
+    - k.mucik@e-strix.pl
+script:
+  - gradle clean test
+  - echo "Travis branch is $TRAVIS_BRANCH"
+  - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
+after_success:
+- bash <(curl -s https://codecov.io/bash)
