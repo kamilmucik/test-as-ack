@@ -1,9 +1,14 @@
 group 'pl.estrix'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'jacoco'
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'jacoco'
+}
+
 
 
 sourceCompatibility = 1.8
@@ -35,6 +40,7 @@ task codeCoverageReport(type: JacocoReport) {
     subprojects.each {
         sourceSets it.sourceSets.main
     }
+
 
     reports {
         xml.enabled true
