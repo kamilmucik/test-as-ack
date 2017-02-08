@@ -3,8 +3,10 @@ jdk: oraclejdk8
 notifications:
     email:
     - k.mucik@e-strix.pl
+before_install:
+  - chmod +x gradlew
 script:
-  - gradle clean test
+  - gradle check
   - echo "Travis branch is $TRAVIS_BRANCH"
   - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
 after_success:
