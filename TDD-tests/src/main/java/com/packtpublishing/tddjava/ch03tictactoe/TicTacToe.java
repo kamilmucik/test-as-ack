@@ -5,6 +5,9 @@ import pl.estrix.model.test.TestDto;
 class TicTacToe {
 
     TestDto print(){
-        return new TestDto(0l,"hello");
+        return TestDto
+                .builder()
+                .name("hello")
+                .build();
     }
 }
