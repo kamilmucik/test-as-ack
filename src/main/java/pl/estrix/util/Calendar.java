@@ -39,9 +39,6 @@ class Calendar implements Iterable<LocalDate>{
          * @return LocalDate
          */
         public LocalDate next() {
-            if(!hasNext()){
-                throw new NoSuchElementException();
-            }
             do {
                 this.date = date.plusDays(1);
             } while ( (!date.getDayOfWeek().equals(DayOfWeek.TUESDAY))
