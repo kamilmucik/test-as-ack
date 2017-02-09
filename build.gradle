@@ -29,7 +29,7 @@ test {
 }
 
 task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/reports/jacoco/*.exec")
 
     subprojects.each {
         sourceSets it.sourceSets.main
@@ -39,6 +39,6 @@ task codeCoverageReport(type: JacocoReport) {
         xml.enabled true
         xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled true
-        csv.enabled false
+        csv.enabled true
     }
 }
