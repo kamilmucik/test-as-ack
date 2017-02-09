@@ -3,6 +3,7 @@ package pl.estrix.util;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class Calendar implements Iterable<LocalDate>{
 
@@ -38,6 +39,9 @@ class Calendar implements Iterable<LocalDate>{
          * @return LocalDate
          */
         public LocalDate next() {
+            if(!hasNext()){
+                throw new NoSuchElementException();
+            }
             do {
                 this.date = date.plusDays(1);
             } while ( (!date.getDayOfWeek().equals(DayOfWeek.TUESDAY))
