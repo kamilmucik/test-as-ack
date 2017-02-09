@@ -1,9 +1,9 @@
 package pl.estrix.model.test;
 
-import com.sun.istack.internal.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 @Getter
 @Builder
@@ -12,6 +12,6 @@ public class TestDto {
 
     private Long id;
 
-    @Nullable
+    @NonNull
     private String name = "";
 }

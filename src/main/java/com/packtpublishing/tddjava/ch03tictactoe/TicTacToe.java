@@ -14,7 +14,7 @@ class TicTacToe {
                     .name("hello")
                     .build();
         } finally {
-            System.out.print(dto.getName());
+            System.out.print(dto.getId());
         }
 
         return dto;
