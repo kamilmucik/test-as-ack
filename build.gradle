@@ -18,20 +18,13 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.6.2'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
 }
-
-subprojects {
-    dependencies {
-
-    }
-
-    test.useTestNG()
-}
-
 
 test {
     jacoco {
-        destinationFile = file("jacoco/jacocoTest.exec")
+        destinationFile = file("${buildDir}/reports/jacoco/jacocoTest.exec")
     }
 }
 
@@ -47,16 +40,5 @@ task codeCoverageReport(type: JacocoReport) {
         xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled true
         csv.enabled false
-    }
-}
-
-codeCoverageReport.dependsOn {
-    subprojects*.test
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
     }
 }

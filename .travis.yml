@@ -9,7 +9,7 @@ before_install:
   - pip install --user codecov
 script:
   - ./gradlew check
-  - ./gradlew codeCoverageReport
+  - ./gradlew clean test jacoco
   - echo "Travis branch is $TRAVIS_BRANCH"
   - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
 after_success:
