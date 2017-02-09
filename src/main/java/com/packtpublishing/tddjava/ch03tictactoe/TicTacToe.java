@@ -11,16 +11,10 @@ class TicTacToe {
     TestDto print(){
         TestDto dto = null;
 
-        try {
-            dto = TestDto
-                    .builder()
-                    .name("hello")
-                    .build();
-            System.out.print(dto.getId());
-
-        }catch (NullPointerException e) {
-            logger.warn(e);
-        }
+        dto = TestDto
+                .builder()
+                .name("hello")
+                .build();
 
         return dto;
     }

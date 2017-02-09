@@ -8,9 +8,7 @@ before_install:
   - chmod +x gradlew
   - pip install --user codecov
 script:
-  - ./gradlew check
-  - ./gradlew clean test codeCoverageReport
-  - ./gradlew sonarqube -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=$SONAR_TOKEN
+  - ./gradlew clean test codeCoverageReport sonarqube -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=$SONAR_TOKEN
   - echo "Travis branch is $TRAVIS_BRANCH"
   - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
 after_success:
