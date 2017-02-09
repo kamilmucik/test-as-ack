@@ -3,7 +3,6 @@ package pl.estrix.util;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 class Calendar implements Iterable<LocalDate>{
 
@@ -30,6 +29,7 @@ class Calendar implements Iterable<LocalDate>{
          * Method always return true, because calendar is infinity.
          * @return true
          */
+        @Override
         public boolean hasNext() {
             return true;
         }
@@ -38,6 +38,7 @@ class Calendar implements Iterable<LocalDate>{
          * Method next() return every <i>Tuesday</i> and <i>Friday</i> in week days.
          * @return LocalDate
          */
+        @Override
         public LocalDate next() {
             do {
                 this.date = date.plusDays(1);
