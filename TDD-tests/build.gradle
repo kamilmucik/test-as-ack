@@ -2,6 +2,7 @@ group 'pl.estrix'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'jacoco' // code coverage reports
 
 sourceCompatibility = 1.8
 
@@ -14,4 +15,14 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.6.2'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+}
+
+jacocoTestReport{
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco/html"
+    }
+    executionData = files('build/jacoco/test.exec')
 }
