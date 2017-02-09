@@ -8,3 +8,4 @@ Wersja: **1.0** zawiera:
 * Konfiguracja travis'a
 * Konfiguracja codecov.io
 * Konfiguracja sonar'a
+"test"  
