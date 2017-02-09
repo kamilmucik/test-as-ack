@@ -1,8 +1,21 @@
 group 'pl.estrix'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+    }
+}
+
+apply plugin: "org.sonarqube"
 apply plugin: 'java'
 apply plugin: 'jacoco'
+
 
 
 sourceCompatibility = 1.8
@@ -40,5 +53,12 @@ task codeCoverageReport(type: JacocoReport) {
         xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled true
         csv.enabled true
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Tests Project"
+        property "sonar.projectKey", "org.sonarqube:test-as-ack"
     }
 }
