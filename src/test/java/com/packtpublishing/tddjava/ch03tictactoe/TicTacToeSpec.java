@@ -58,12 +58,14 @@ public class TicTacToeSpec {
     @Test
     public void givenLastTurnWhenNextPlayerThenO() {
         ticTacToe.play(1,1);
+
         assertThat(ticTacToe.nextPlayer()).isEqualTo('O');
     }
 
     @Test
     public void whenPlayThenNoWinner() {
         String actual = ticTacToe.play(1,1);
+
         assertThat(actual).isEqualTo("Brak zwyciezcy");
     }
 
@@ -74,6 +76,7 @@ public class TicTacToeSpec {
         ticTacToe.play(2,1);// X
         ticTacToe.play(2,2);// O
         String actual = ticTacToe.play(3,1);// X
+
         assertThat(actual).isEqualTo("Wygral X");
     }
 
@@ -85,6 +88,7 @@ public class TicTacToeSpec {
         ticTacToe.play(1, 2);// O
         ticTacToe.play(2, 2);// X
         String actual = ticTacToe.play(1, 3);// Y
+
         assertThat(actual).isEqualTo("Wygral O");
     }
 
@@ -95,6 +99,18 @@ public class TicTacToeSpec {
         ticTacToe.play(2,2);// X
         ticTacToe.play(1,3);// O
         String actual = ticTacToe.play(3,3);// X
+
+        assertThat(actual).isEqualTo("Wygral X");
+    }
+
+    @Test
+    public void whenPlayAndTopBottomReverseDiagonalLineThenWinner() {
+        ticTacToe.play(3,1);// X
+        ticTacToe.play(1,2);// O
+        ticTacToe.play(2,2);// X
+        ticTacToe.play(2,3);// O
+        String actual = ticTacToe.play(1,3);// X
+
         assertThat(actual).isEqualTo("Wygral X");
     }
 
@@ -109,6 +125,7 @@ public class TicTacToeSpec {
         ticTacToe.play(3,1);
         ticTacToe.play(3,3);
         String actual = ticTacToe.play(3,2);
+
         assertThat(actual).isEqualTo("Wynik remisowy");
     }
 }
