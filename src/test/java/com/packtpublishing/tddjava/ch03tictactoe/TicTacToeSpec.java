@@ -3,14 +3,16 @@ package com.packtpublishing.tddjava.ch03tictactoe;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import pl.estrix.model.test.TestDto;
-
+import org.junit.rules.ExpectedException;
 
 public class TicTacToeSpec {
 
     private TicTacToe ticTacToe;
-    private TestDto testObject;
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Before
     public final void before(){
@@ -18,15 +20,43 @@ public class TicTacToeSpec {
     }
 
     @Test
-    public void shouldReturnEnything(){
-        testObject = ticTacToe.print();
-        System.out.print(testObject.getName());
+    public void whenXOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(5,2);
+    }
+    @Test
+    public void whenXNegativeOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(-5,2);
     }
 
     @Test
-    public void shouldReturnHelloMessage(){
-        testObject = ticTacToe.print();
+    public void whenYOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(2,5);
+    }
 
-        assertThat("hello").isEqualTo(testObject.getName() );
+    @Test
+    public void whenYNegativeOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(2,-5);
+    }
+
+    @Test
+    public void whenOccupiedThenRuntimeException() {
+        ticTacToe.play(2,1);
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(2,1);
+    }
+
+    @Test
+    public void givenFirstTurnWhenPlayerThenX() {
+        assertThat(ticTacToe.nextPlayer()).isEqualTo('X');
+    }
+
+    @Test
+    public void givenLastTurnWhenNextPlayerThenO() {
+        ticTacToe.play(1,1);
+        assertThat(ticTacToe.nextPlayer()).isEqualTo('O');
     }
 }
