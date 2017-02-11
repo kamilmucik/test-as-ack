@@ -21,30 +21,30 @@ public class TicTacToeSpec {
     }
 
     @Test
-    public void whenXOutsideBoardThenRuntimeException() throws Throwable  {
+    public void whenXOutsideBoardThenRuntimeException() {
         exception.expect(OwnRuntimeException.class);
         ticTacToe.play(5,2);
     }
     @Test
-    public void whenXNegativeOutsideBoardThenRuntimeException() throws Throwable  {
+    public void whenXNegativeOutsideBoardThenRuntimeException() {
         exception.expect(OwnRuntimeException.class);
         ticTacToe.play(-5,2);
     }
 
     @Test
-    public void whenYOutsideBoardThenRuntimeException() throws Throwable {
+    public void whenYOutsideBoardThenRuntimeException() {
         exception.expect(OwnRuntimeException.class);
         ticTacToe.play(2,5);
     }
 
     @Test
-    public void whenYNegativeOutsideBoardThenRuntimeException() throws Throwable  {
+    public void whenYNegativeOutsideBoardThenRuntimeException() {
         exception.expect(OwnRuntimeException.class);
         ticTacToe.play(2,-5);
     }
 
     @Test
-    public void whenOccupiedThenRuntimeException() throws Throwable  {
+    public void whenOccupiedThenRuntimeException() {
         ticTacToe.play(2,1);
         exception.expect(OwnRuntimeException.class);
         ticTacToe.play(2,1);
@@ -56,19 +56,19 @@ public class TicTacToeSpec {
     }
 
     @Test
-    public void givenLastTurnWhenNextPlayerThenO() throws Throwable {
+    public void givenLastTurnWhenNextPlayerThenO() {
         ticTacToe.play(1,1);
         assertThat(ticTacToe.nextPlayer()).isEqualTo('O');
     }
 
     @Test
-    public void whenPlayThenNoWinner() throws Throwable {
+    public void whenPlayThenNoWinner() {
         String actual = ticTacToe.play(1,1);
         assertThat(actual).isEqualTo("Brak zwyciezcy");
     }
 
     @Test
-    public void whenPlayAndWholeHorizontalLineThenWinner() throws Throwable {
+    public void whenPlayAndWholeHorizontalLineThenWinner() {
         ticTacToe.play(1,1);// X
         ticTacToe.play(1,2);// O
         ticTacToe.play(2,1);// X
@@ -78,18 +78,18 @@ public class TicTacToeSpec {
     }
 
     @Test
-    public void whenPlayAndWholeVerticalLineThenWinner() throws Throwable {
-        ticTacToe.play(2,1);// X
-        ticTacToe.play(1,1);// O
-        ticTacToe.play(3,1);// X
-        ticTacToe.play(1,2);// O
-        ticTacToe.play(2,2);// X
-        String actual = ticTacToe.play(1,3);// Y
+    public void whenPlayAndWholeVerticalLineThenWinner()  {
+        ticTacToe.play(2, 1);// X
+        ticTacToe.play(1, 1);// O
+        ticTacToe.play(3, 1);// X
+        ticTacToe.play(1, 2);// O
+        ticTacToe.play(2, 2);// X
+        String actual = ticTacToe.play(1, 3);// Y
         assertThat(actual).isEqualTo("Wygral O");
     }
 
     @Test
-    public void whenPlayAndTopBottomDiagonalLineThenWinner() throws Throwable {
+    public void whenPlayAndTopBottomDiagonalLineThenWinner() {
         ticTacToe.play(1,1);// X
         ticTacToe.play(1,2);// O
         ticTacToe.play(2,2);// X
@@ -99,7 +99,7 @@ public class TicTacToeSpec {
     }
 
     @Test
-    public void whenAllBoxesAreFilledThenDraw() throws Throwable {
+    public void whenAllBoxesAreFilledThenDraw() {
         ticTacToe.play(1,1);
         ticTacToe.play(1,2);
         ticTacToe.play(1,3);
