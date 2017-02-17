@@ -108,7 +108,7 @@ public class Location {
         if (this == o) {
             return true;
         }
-        if (o == null) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         Location location = (Location) o;
