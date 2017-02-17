@@ -114,4 +114,12 @@ public class Location {
         Location location = (Location) o;
         return getX() == location.getX() && getY() == location.getY() && direction == location.direction;
     }
+
+    @Override
+    public int hashCode(){
+        int hash = 5;
+        hash =  hash + (this.point != null ? this.point.hashCode() : 0);
+
+        return hash;
+    }
 }
