@@ -60,6 +60,8 @@ public class Location {
             case WEST:
                 x = wrap(getX() - fw, max.getX());
                 break;
+            default:
+                break;
         }
         if (isObstacle(new Point(x, y), obstacles)) {
             return false;
