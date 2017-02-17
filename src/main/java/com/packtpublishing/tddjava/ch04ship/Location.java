@@ -1,6 +1,5 @@
 package com.packtpublishing.tddjava.ch04ship;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Location {
@@ -8,49 +7,49 @@ public class Location {
     private static final int FORWARD = 1;
     private static final int BACKWARD = -1;
 
-    public int getX() {
+    int getX() {
         return point.getX();
     }
 
-    public int getY() {
+    int getY() {
         return point.getY();
     }
 
     private Point point;
-    public Point getPoint() {
+    Point getPoint() {
         return point;
     }
 
     private Direction direction;
-    public Direction getDirection() {
+    Direction getDirection() {
         return this.direction;
     }
-    public void setDirection(Direction direction) {
+    void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    public Location(Point point, Direction direction) {
+    Location(Point point, Direction direction) {
         this.point = point;
         this.direction = direction;
     }
 
-    public boolean forward() {
-        return move(FORWARD, new Point(100, 100), new ArrayList<>());
-    }
-    public boolean forward(Point max) {
-        return move(FORWARD, max, new ArrayList<>());
-    }
-    public boolean forward(Point max, List<Point> obstacles) {
+//    public boolean forward() {
+//        return move(FORWARD, new Point(100, 100), new ArrayList<>());
+//    }
+//    public boolean forward(Point max) {
+//        return move(FORWARD, max, new ArrayList<>());
+//    }
+    boolean forward(Point max, List<Point> obstacles) {
         return move(FORWARD, max, obstacles);
     }
 
-    public boolean backward() {
-        return move(BACKWARD, new Point(100, 100), new ArrayList<>());
-    }
-    public boolean backward(Point max) {
-        return move(BACKWARD, max, new ArrayList<>());
-    }
-    public boolean backward(Point max, List<Point> obstacles) {
+//    public boolean backward() {
+//        return move(BACKWARD, new Point(100, 100), new ArrayList<>());
+//    }
+//    public boolean backward(Point max) {
+//        return move(BACKWARD, max, new ArrayList<>());
+//    }
+    boolean backward(Point max, List<Point> obstacles) {
         return move(BACKWARD, max, obstacles);
     }
 
@@ -99,26 +98,27 @@ public class Location {
         return point;
     }
 
-    public void turnLeft() {
+    void turnLeft() {
         this.direction = direction.turnLeft();
     }
 
-    public void turnRight() {
+    void turnRight() {
         this.direction = direction.turnRight();
     }
 
-    public Location copy() {
+    Location copy() {
         return new Location(new Point(point.getX(), point.getY()), direction);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Location location = (Location) o;
-        if (getX() != location.getX()) return false;
-        if (getY() != location.getY()) return false;
-        if (direction != location.direction) return false;
-        return true;
+        return getX() == location.getX() && getY() == location.getY() && direction == location.direction;
     }
 }

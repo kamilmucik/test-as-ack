@@ -10,7 +10,7 @@ public enum Direction {
 
     private final int value;
     private final char shortName;
-    private Direction(final int newValue, final char shortNameValue) {
+    Direction(final int newValue, final char shortNameValue) {
         value = newValue;
         shortName = shortNameValue;
     }
