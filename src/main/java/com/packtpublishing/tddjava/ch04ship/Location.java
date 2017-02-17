@@ -7,6 +7,27 @@ public class Location {
     private static final int FORWARD = 1;
     private static final int BACKWARD = -1;
 
+    private Point point;
+
+    private Direction direction;
+
+    Location(Point point, Direction direction) {
+        this.point = point;
+        this.direction = direction;
+    }
+
+    Point getPoint() {
+        return point;
+    }
+
+    Direction getDirection() {
+        return this.direction;
+    }
+
+    void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     int getX() {
         return point.getX();
     }
@@ -15,40 +36,10 @@ public class Location {
         return point.getY();
     }
 
-    private Point point;
-    Point getPoint() {
-        return point;
-    }
-
-    private Direction direction;
-    Direction getDirection() {
-        return this.direction;
-    }
-    void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    Location(Point point, Direction direction) {
-        this.point = point;
-        this.direction = direction;
-    }
-
-//    public boolean forward() {
-//        return move(FORWARD, new Point(100, 100), new ArrayList<>());
-//    }
-//    public boolean forward(Point max) {
-//        return move(FORWARD, max, new ArrayList<>());
-//    }
     boolean forward(Point max, List<Point> obstacles) {
         return move(FORWARD, max, obstacles);
     }
 
-//    public boolean backward() {
-//        return move(BACKWARD, new Point(100, 100), new ArrayList<>());
-//    }
-//    public boolean backward(Point max) {
-//        return move(BACKWARD, max, new ArrayList<>());
-//    }
     boolean backward(Point max, List<Point> obstacles) {
         return move(BACKWARD, max, obstacles);
     }
