@@ -119,12 +119,14 @@ public class LocationSpec {
 
     @Test
     public void givenSameObjectsWhenEqualsThenTrue() {
-        assertThat(location.equals(location)).isTrue();
+        Location copiedLocation = location.copy();
+
+        assertThat(location.equals(copiedLocation)).isTrue();
     }
 
     @Test
     public void givenDifferentObjectWhenEqualsThenFalse() {
-        assertThat(location.equals("bla")).isFalse();
+        assertThat(location.equals(new Object())).isFalse();
     }
 
     @Test
