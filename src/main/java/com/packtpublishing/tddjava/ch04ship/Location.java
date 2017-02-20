@@ -1,6 +1,7 @@
 package com.packtpublishing.tddjava.ch04ship;
 
 import java.util.List;
+import java.util.Random;
 
 public class Location {
 
@@ -123,7 +124,7 @@ public class Location {
     @Override
     public int hashCode(){
         int hash = 5;
-        hash =  hash + (this.point != null ? this.point.hashCode() : 0);
+        hash =  hash + (new Random().nextInt());
 
         return hash;
     }
