@@ -249,4 +249,13 @@ public class LocationSpec {
         assertThat(location.equals(null)).isFalse();
     }
 
+    @Test
+    public void givenObstaclesWhenBackwardThenReturnFalse() {
+        location.setDirection(Direction.EAST);
+        obstacles.add(new Point(x - 1, y));
+        obstacles.add(new Point(x - 2, y));
+
+        assertThat(location.backward(max, obstacles)).isFalse();
+    }
+
 }
