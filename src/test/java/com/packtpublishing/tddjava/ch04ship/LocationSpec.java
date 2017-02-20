@@ -84,7 +84,7 @@ public class LocationSpec {
         location.setDirection(Direction.NONE);
         location.backward(max, obstacles);
 
-        assertThat(location.getY()).isEqualTo(y);
+        assertThat(location.getY()).isEqualTo(0);
     }
 
     @Test
