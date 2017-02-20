@@ -244,4 +244,9 @@ public class LocationSpec {
         assertThat(location.hashCode()).isNotSameAs(testLocation.hashCode());
     }
 
+    @Test
+    public void shouldCheckEqualWithNull(){
+        assertThat(location.equals(null)).isFalse();
+    }
+
 }
