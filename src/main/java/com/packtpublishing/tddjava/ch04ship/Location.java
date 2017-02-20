@@ -61,6 +61,8 @@ public class Location {
                 x = wrap(getX() - fw, max.getX());
                 break;
             default:
+                x = wrap(getX() - fw, 0);
+                y = wrap(getY() + fw, 0);
                 break;
         }
         if (isObstacle(new Point(x, y), obstacles)) {
@@ -108,7 +110,10 @@ public class Location {
         if (this == o) {
             return true;
         }
-        if (o == null || this.getClass() != o.getClass()) {
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        if (o == null) {
             return false;
         }
         Location location = (Location) o;

@@ -80,6 +80,14 @@ public class LocationSpec {
     }
 
     @Test
+    public void givenDirectionNone() {
+        location.setDirection(Direction.NONE);
+        location.backward(max, obstacles);
+
+        assertThat(location.getY()).isEqualTo(y);
+    }
+
+    @Test
     public void givenDirectionSWhenBackwardThenYDecreases() {
         location.setDirection(Direction.SOUTH);
         location.backward(max, obstacles);
@@ -226,6 +234,14 @@ public class LocationSpec {
         obstacles.add(new Point(x - 1, y));
 
         assertThat(location.backward(max, obstacles)).isFalse();
+    }
+
+    @Test
+    public void shouldCheckHashCode(){
+        Location testLocation = new Location(new Point(0,0), Direction.NONE);
+
+        assertThat(location.equals(testLocation)).isFalse();
+        assertThat(location.hashCode()).isNotSameAs(testLocation.hashCode());
     }
 
 }
