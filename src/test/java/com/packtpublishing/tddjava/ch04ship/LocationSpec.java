@@ -250,14 +250,22 @@ public class LocationSpec {
     }
 
     @Test
-    public void givenObstaclesWhenBackwardThenReturnFalse() {
+    public void givenObstaclesWhenDonotFindThenReturnTrue() {
         location.setDirection(Direction.EAST);
         obstacles.add(new Point(1, 1));
         obstacles.add(new Point(0, 0));
-        obstacles.add(new Point(0, 1));
-        obstacles.add(new Point(1, 0));
 
         assertThat(location.backward(max, obstacles)).isTrue();
     }
+
+    @Test
+    public void givenObstaclesWhenFindThenReturnFalse() {
+        location.setDirection(Direction.EAST);
+        obstacles.add(new Point(11, 32));
+
+        assertThat(location.backward(max, obstacles)).isFalse();
+    }
+
+
 
 }
