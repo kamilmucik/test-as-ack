@@ -252,7 +252,8 @@ public class LocationSpec {
     @Test
     public void givenObstaclesWhenDonotFindThenReturnTrue() {
         location.setDirection(Direction.EAST);
-        obstacles.add(new Point(1, 1));
+        obstacles.add(new Point(1, 32));
+        obstacles.add(new Point(11, 0));
         obstacles.add(new Point(0, 0));
 
         assertThat(location.backward(max, obstacles)).isTrue();
