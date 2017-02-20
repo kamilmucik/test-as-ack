@@ -252,10 +252,12 @@ public class LocationSpec {
     @Test
     public void givenObstaclesWhenBackwardThenReturnFalse() {
         location.setDirection(Direction.EAST);
-        obstacles.add(new Point(x - 1, y));
-        obstacles.add(new Point(x - 2, y));
+        obstacles.add(new Point(1, 1));
+        obstacles.add(new Point(0, 0));
+        obstacles.add(new Point(0, 1));
+        obstacles.add(new Point(1, 0));
 
-        assertThat(location.backward(max, obstacles)).isFalse();
+        assertThat(location.backward(max, obstacles)).isTrue();
     }
 
 }
