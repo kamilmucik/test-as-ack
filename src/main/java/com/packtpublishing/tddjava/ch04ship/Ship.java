@@ -1,5 +1,14 @@
 package com.packtpublishing.tddjava.ch04ship;
 
-public class Ship {
+import lombok.Getter;
+
+@Getter
+class Ship {
+
+	private Location location;
+
+	Ship(Location location) {
+		this.location = location;
+	}
 
 }
