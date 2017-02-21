@@ -53,4 +53,25 @@ public class ShipSpec {
 
 		assertThat(ship.getLocation().getPoint().getX()).isEqualTo(22);
 	}
+
+	@Test
+	public void whenReceiveCommandsFThenForward() {
+		Location expected = location.copy();
+		expected.forward(max, obstacles);
+		ship.receiveCommands("f");
+
+		assertThat(ship.getLocation()).isEqualTo(expected);
+	}
+
+	@Test
+	public void whenReceiveCommandsThenAllAreExecuted() {
+		Location expected = location.copy();
+		expected.turnRight();
+		expected.forward(max, obstacles);
+		expected.turnLeft();
+		expected.backward(max, obstacles);
+		ship.receiveCommands("rflb");
+
+		assertThat(ship.getLocation()).isEqualTo(expected);
+	}
 }

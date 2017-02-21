@@ -26,4 +26,31 @@ class Ship {
 	boolean moveBackward() {
 		return this.location.backward(max, obstacles);
 	}
+
+	void turnRight() {
+		this.location.turnRight();
+	}
+
+	void turnLeft() {
+		this.location.turnLeft();
+	}
+
+	public void receiveCommands(String commands) {
+		for (char command : commands.toCharArray()) {
+			switch(command) {
+			case 'f':
+				moveForward();
+				break;
+			case 'b':
+				moveBackward();
+				break;
+			case 'l':
+				turnLeft();
+				break;
+			case 'r':
+				turnRight();
+				break;
+			}
+		}
+	}
 }
