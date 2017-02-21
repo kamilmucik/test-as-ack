@@ -5,9 +5,10 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+
 class Ship {
 
+	@Getter
 	private Location location;
 	private Point max;
 	private List<Point> obstacles;
