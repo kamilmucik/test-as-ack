@@ -70,8 +70,16 @@ public class ShipSpec {
 		expected.forward(max, obstacles);
 		expected.turnLeft();
 		expected.backward(max, obstacles);
-		ship.receiveCommands("rflb");
+		ship.receiveCommands("rflbx");
 
 		assertThat(ship.getLocation()).isEqualTo(expected);
+	}
+
+	@Test
+	public void whenInstantiatedThenPlanetIsStored() {
+		Planet planet = new Planet(max);
+		ship = new Ship(location, planet);
+
+		assertThat(ship.getPlanet()).isEqualTo(planet);
 	}
 }

@@ -10,6 +10,8 @@ class Ship {
 
 	@Getter
 	private Location location;
+	@Getter
+	private Planet planet;
 	private Point max;
 	private List<Point> obstacles;
 
@@ -17,6 +19,11 @@ class Ship {
 		this.location = location;
 		this.max = new Point(50, 50);
 		this.obstacles = new ArrayList<>();
+	}
+
+	public Ship(Location location, Planet planet) {
+		this.location = location;
+		this.planet = planet;
 	}
 
 	boolean moveForward() {
@@ -49,6 +56,8 @@ class Ship {
 				break;
 			case 'r':
 				turnRight();
+				break;
+			default:
 				break;
 			}
 		}
