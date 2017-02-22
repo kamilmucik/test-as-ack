@@ -10,7 +10,7 @@ class TicTacToe {
 
     private static final int SIZE = 3;
 
-    String play(int x, int y) throws RuntimeException  {
+    String play(int x, int y) {
         checkAxis(x);
         checkAxis(y);
         lastPlayer = nextPlayer();
@@ -49,7 +49,7 @@ class TicTacToe {
         return diagonal1 == playerTotal || diagonal2 == playerTotal || horizontal == playerTotal || vertical == playerTotal;
     }
 
-    private void checkAxis(int axis) throws RuntimeException {
+    private void checkAxis(int axis) {
         if (axis < 1 || axis > 3) {
             throw new OwnRuntimeException("Wartosc X wykracza poza plansze");
         }
