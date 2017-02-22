@@ -1,7 +1,10 @@
 package com.packtpublishing.tddjava.ch05connect4;
 
+import pl.estrix.exception.OwnRuntimeException;
+
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -80,13 +83,13 @@ class Connect4TDD {
 
     private void checkColumn(int column) {
         if (column < 0 || column >= COLUMNS)
-            throw new RuntimeException(String.format("Invalid column %d", column));
+            throw new OwnRuntimeException(String.format("Invalid column %d", column));
 
     }
 
     private void checkPositionToInsert(int row, int column) {
         if (row == ROWS)
-            throw new RuntimeException(String.format("No more room in column %d", column));
+            throw new OwnRuntimeException(String.format("No more room in column %d", column));
     }
 
     boolean isFinished() {
@@ -102,21 +105,24 @@ class Connect4TDD {
             String colour = board[row][column];
             Pattern winPattern = Pattern.compile(".*" + colour + "{" + DISCS_TO_WIN + "}.*");
 
-            String vertical = IntStream.range(0, ROWS)
+            Optional<String> verticalOpt = IntStream.range(0, ROWS)
                     .mapToObj(r -> board[r][column])
-                    .reduce(String::concat).get();
+                    .reduce(String::concat);
+            String vertical = (verticalOpt.isPresent())?verticalOpt.get():"";
             if (winPattern.matcher(vertical).matches())
                 winner = colour;
 
             if (winner.isEmpty()) {
-                String horizontal = Stream.of(board[row]).reduce(String::concat).get();
+                Optional<String> horizontalOpt = Stream.of(board[row]).reduce(String::concat);
+                String horizontal = (horizontalOpt.isPresent())?horizontalOpt.get():"";
                 if (winPattern.matcher(horizontal).matches())
                     winner = colour;
             }
 
             if (winner.isEmpty()) {
                 int startOffset = Math.min(column, row);
-                int myColumn = column - startOffset, myRow = row - startOffset;
+                int myColumn = column - startOffset;
+                int myRow = row - startOffset;
                 StringJoiner stringJoiner = new StringJoiner("");
                 do {
                     stringJoiner.add(board[myRow++][myColumn++]);
@@ -127,7 +133,8 @@ class Connect4TDD {
 
             if (winner.isEmpty()) {
                 int startOffset = Math.min(column, ROWS - 1 - row);
-                int myColumn = column - startOffset, myRow = row + startOffset;
+                int myColumn = column - startOffset;
+                int myRow = row + startOffset;
                 StringJoiner stringJoiner = new StringJoiner("");
                 do {
                     stringJoiner.add(board[myRow--][myColumn++]);
