@@ -3,24 +3,21 @@ package com.packtpublishing.tddjava.ch04ship;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShipSpec {
 
 	private Point max;
-	private List<Point> obstacles;
 	private Location location;
 	private Ship ship;
+	private Planet planet;
 
 	@Before
 	public void beforeTest() {
 		location = new Location(new Point(21, 13), Direction.NORTH);
-		ship = new Ship(location);
 		max = new Point(50, 50);
-		obstacles = new ArrayList<>();
+		planet = new Planet(max);
+		ship = new Ship(location, planet);
 	}
 
 	@Test
@@ -31,7 +28,7 @@ public class ShipSpec {
 	@Test
 	public void givenNorthWhenMoveForwardThenYDecreases() {
 		Location expected = location.copy();
-		expected.forward(max, obstacles);
+		expected.forward(max, planet.getObstacles());
 		ship.moveForward();
 
 		assertThat(ship.getLocation()).isEqualTo(expected);
@@ -40,7 +37,7 @@ public class ShipSpec {
 	@Test
 	public void whenMoveBackwardThenBackward() {
 		Location expected = location.copy();
-		expected.backward(max, obstacles);
+		expected.backward(planet.getMax(), planet.getObstacles());
 		ship.moveBackward();
 
 		assertThat(ship.getLocation()).isEqualTo(expected);
@@ -57,7 +54,7 @@ public class ShipSpec {
 	@Test
 	public void whenReceiveCommandsFThenForward() {
 		Location expected = location.copy();
-		expected.forward(max, obstacles);
+		expected.forward(planet.getMax(), planet.getObstacles());
 		ship.receiveCommands("f");
 
 		assertThat(ship.getLocation()).isEqualTo(expected);
@@ -67,9 +64,9 @@ public class ShipSpec {
 	public void whenReceiveCommandsThenAllAreExecuted() {
 		Location expected = location.copy();
 		expected.turnRight();
-		expected.forward(max, obstacles);
+		expected.forward(planet.getMax(), planet.getObstacles());
 		expected.turnLeft();
-		expected.backward(max, obstacles);
+		expected.backward(planet.getMax(), planet.getObstacles());
 		ship.receiveCommands("rflbx");
 
 		assertThat(ship.getLocation()).isEqualTo(expected);
@@ -77,9 +74,6 @@ public class ShipSpec {
 
 	@Test
 	public void whenInstantiatedThenPlanetIsStored() {
-		Planet planet = new Planet(max);
-		ship = new Ship(location, planet);
-
 		assertThat(ship.getPlanet()).isEqualTo(planet);
 	}
 }

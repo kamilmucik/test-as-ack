@@ -24,6 +24,8 @@ class Ship {
 	public Ship(Location location, Planet planet) {
 		this.location = location;
 		this.planet = planet;
+		this.max = planet.getMax();
+		this.obstacles = planet.getObstacles();
 	}
 
 	boolean moveForward() {

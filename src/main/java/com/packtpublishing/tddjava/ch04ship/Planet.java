@@ -1,24 +1,23 @@
 package com.packtpublishing.tddjava.ch04ship;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 class Planet {
 
+    @Getter
     private final Point max;
-    Point getMax() {
-        return max;
-    }
 
+    @Getter
+    @Setter
     private List<Point> obstacles;
-    List<Point> getObstacles() {
-        return obstacles;
-    }
-//    public void setObstacles(List<Point> obstacles) {
-//        this.obstacles = obstacles;
-//    }
 
-    public Planet(Point max) {
+    Planet(Point max) {
         this.max = max;
+        this.obstacles = new ArrayList<>();
     }
 
     Planet(Point max, List<Point> obstacles) {
