@@ -76,4 +76,13 @@ public class ShipSpec {
 	public void whenInstantiatedThenPlanetIsStored() {
 		assertThat(ship.getPlanet()).isEqualTo(planet);
 	}
+
+	@Test
+	public void overpassEastBoundary() {
+		location.setDirection(Direction.EAST);
+		location.getPoint().setX(planet.getMax().getX());
+		ship.receiveCommands("f");
+
+		assertThat(location.getX()).isEqualTo(1);
+	}
 }

@@ -11,22 +11,20 @@ class Ship {
 	private Location location;
 	@Getter
 	private Planet planet;
-	private Point max;
 	private List<Point> obstacles;
 
 	Ship(Location location, Planet planet) {
 		this.location = location;
 		this.planet = planet;
-		this.max = planet.getMax();
 		this.obstacles = planet.getObstacles();
 	}
 
 	boolean moveForward() {
-		return this.location.forward(max, obstacles);
+		return location.forward(planet.getMax(), obstacles);
 	}
 
 	boolean moveBackward() {
-		return this.location.backward(max, obstacles);
+		return this.location.backward(planet.getMax(), obstacles);
 	}
 
 	private void turnRight() {
