@@ -10,7 +10,7 @@ class TicTacToe {
 
     private static final int SIZE = 3;
 
-    String play(int x, int y) throws OwnRuntimeException  {
+    String play(int x, int y) throws RuntimeException  {
         checkAxis(x);
         checkAxis(y);
         lastPlayer = nextPlayer();
@@ -35,7 +35,10 @@ class TicTacToe {
 
     private boolean isWin(int x, int y) {
         int playerTotal = lastPlayer * 3;
-        char horizontal, vertical, diagonal1, diagonal2;
+        char horizontal;
+        char vertical;
+        char diagonal1;
+        char diagonal2;
         horizontal= vertical= diagonal1= diagonal2= '\0';
         for (int i = 0; i< SIZE; i++) {
             horizontal += board[i][y - 1];
@@ -46,7 +49,7 @@ class TicTacToe {
         return diagonal1 == playerTotal || diagonal2 == playerTotal || horizontal == playerTotal || vertical == playerTotal;
     }
 
-    private void checkAxis(int axis) throws OwnRuntimeException {
+    private void checkAxis(int axis) throws RuntimeException {
         if (axis < 1 || axis > 3) {
             throw new OwnRuntimeException("Wartosc X wykracza poza plansze");
         }
