@@ -108,14 +108,13 @@ class Connect4TDD {
             Optional<String> verticalOpt = IntStream.range(0, ROWS)
                     .mapToObj(r -> board[r][column])
                     .reduce(String::concat);
-            String vertical = verticalOpt.isPresent()?verticalOpt.get():"";
-            if (winPattern.matcher(vertical).matches())
+
+            if (verticalOpt.isPresent() && winPattern.matcher(verticalOpt.get()).matches())
                 winner = colour;
 
             if (winner.isEmpty()) {
                 Optional<String> horizontalOpt = Stream.of(board[row]).reduce(String::concat);
-                String horizontal = horizontalOpt.isPresent()?horizontalOpt.get():"";
-                if (winPattern.matcher(horizontal).matches())
+                if (horizontalOpt.isPresent() && winPattern.matcher(horizontalOpt.get()).matches())
                     winner = colour;
             }
 
