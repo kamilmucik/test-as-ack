@@ -116,30 +116,27 @@ class Connect4TDD {
                 Optional<String> horizontalOpt = Stream.of(board[row]).reduce(String::concat);
                 if (horizontalOpt.isPresent() && winPattern.matcher(horizontalOpt.get()).matches())
                     winner = colour;
+
+                if (winPattern.matcher(getWinner(row,column,true).toString()).matches()
+                        || winPattern.matcher(getWinner(row,column,false).toString()).matches() )
+                    winner = currentPlayer;
             }
-
-            if (winPattern.matcher(getWinner(row,column,true).toString()).matches()
-                    || winPattern.matcher(getWinner(row,column,false).toString()).matches() )
-                winner = currentPlayer;
-
         }
     }
 
     private StringJoiner getWinner(int row, int column, Boolean searchWay) {
         StringJoiner stringJoiner = new StringJoiner("");
-        if (winner.isEmpty()) {
-            int startOffset = Math.min(column, searchWay?row:ROWS - 1 - row);
-            int myColumn = column - startOffset;
-            int myRow = searchWay?row - startOffset:row + startOffset;
-            if (searchWay)
-                do {
-                    stringJoiner.add(board[myRow++][myColumn++]);
-                } while (myColumn < COLUMNS && myRow < ROWS);
-            else
-                do {
-                    stringJoiner.add(board[myRow--][myColumn++]);
-                } while (myColumn < COLUMNS && myRow >= 0);
-        }
+        int startOffset = Math.min(column, searchWay?row:ROWS - 1 - row);
+        int myColumn = column - startOffset;
+        int myRow = searchWay?row - startOffset:row + startOffset;
+        if (searchWay)
+            do {
+                stringJoiner.add(board[myRow++][myColumn++]);
+            } while (myColumn < COLUMNS && myRow < ROWS);
+        else
+            do {
+                stringJoiner.add(board[myRow--][myColumn++]);
+            } while (myColumn < COLUMNS && myRow >= 0);
         return stringJoiner;
     }
 }
