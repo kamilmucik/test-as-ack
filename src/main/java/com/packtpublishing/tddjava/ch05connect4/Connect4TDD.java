@@ -118,29 +118,28 @@ class Connect4TDD {
                     winner = colour;
             }
 
-            if (winner.isEmpty()) {
-                int startOffset = Math.min(column, row);
-                int myColumn = column - startOffset;
-                int myRow = row - startOffset;
-                StringJoiner stringJoiner = new StringJoiner("");
+            if (winPattern.matcher(getWinner(row,column,true).toString()).matches()
+                    || winPattern.matcher(getWinner(row,column,false).toString()).matches() )
+                winner = currentPlayer;
+
+        }
+    }
+
+    private StringJoiner getWinner(int row, int column, Boolean searchWay) {
+        StringJoiner stringJoiner = new StringJoiner("");
+        if (winner.isEmpty()) {
+            int startOffset = Math.min(column, (searchWay)?row:ROWS - 1 - row);
+            int myColumn = column - startOffset;
+            int myRow = (searchWay)?row - startOffset:row + startOffset;
+            if (searchWay)
                 do {
                     stringJoiner.add(board[myRow++][myColumn++]);
                 } while (myColumn < COLUMNS && myRow < ROWS);
-                if (winPattern.matcher(stringJoiner.toString()).matches())
-                    winner = currentPlayer;
-            }
-
-            if (winner.isEmpty()) {
-                int startOffset = Math.min(column, ROWS - 1 - row);
-                int myColumn = column - startOffset;
-                int myRow = row + startOffset;
-                StringJoiner stringJoiner = new StringJoiner("");
+            else
                 do {
                     stringJoiner.add(board[myRow--][myColumn++]);
                 } while (myColumn < COLUMNS && myRow >= 0);
-                if (winPattern.matcher(stringJoiner.toString()).matches())
-                    winner = currentPlayer;
-            }
         }
+        return stringJoiner;
     }
 }
