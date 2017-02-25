@@ -128,9 +128,9 @@ class Connect4TDD {
     private StringJoiner getWinner(int row, int column, Boolean searchWay) {
         StringJoiner stringJoiner = new StringJoiner("");
         if (winner.isEmpty()) {
-            int startOffset = Math.min(column, (searchWay)?row:ROWS - 1 - row);
+            int startOffset = Math.min(column, searchWay?row:ROWS - 1 - row);
             int myColumn = column - startOffset;
-            int myRow = (searchWay)?row - startOffset:row + startOffset;
+            int myRow = searchWay?row - startOffset:row + startOffset;
             if (searchWay)
                 do {
                     stringJoiner.add(board[myRow++][myColumn++]);
