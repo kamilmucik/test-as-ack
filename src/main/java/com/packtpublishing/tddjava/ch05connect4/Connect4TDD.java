@@ -109,8 +109,7 @@ class Connect4TDD {
                     .mapToObj(r -> board[r][column])
                     .reduce(String::concat);
 
-            if (verticalOpt.isPresent())
-                if (winPattern.matcher(verticalOpt.get()).matches())
+            if (verticalOpt.isPresent() && winPattern.matcher(verticalOpt.get()).matches())
                     winner = colour;
 
             if (winner.isEmpty()) {

@@ -17,4 +17,22 @@ public class TicTacToeCollection {
 
 	@Getter
 	private MongoCollection mongoCollection;
+
+	public boolean saveMove(TicTacToeBean bean) {
+		try {
+			getMongoCollection().save(bean);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean drop() {
+		try {
+			getMongoCollection().drop();
+			return true;
+		} catch (Exception e){
+			return false;
+		}
+	}
 }
