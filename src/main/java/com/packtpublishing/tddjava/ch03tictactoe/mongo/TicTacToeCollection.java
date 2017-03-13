@@ -10,19 +10,19 @@ import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
 
-public class TicTacToeCollection {
+class TicTacToeCollection {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TicTacToeCollection.class);
-
-	public TicTacToeCollection() throws UnknownHostException {
-		DB db = new MongoClient().getDB("tic-tac-toe");
-		mongoCollection = new Jongo(db).getCollection("game");
-	}
 
 	@Getter
 	private MongoCollection mongoCollection;
 
-	public boolean saveMove(TicTacToeBean bean) {
+	TicTacToeCollection() throws UnknownHostException {
+		DB db = new MongoClient().getDB("tic-tac-toe");
+		mongoCollection = new Jongo(db).getCollection("game");
+	}
+
+	boolean saveMove(TicTacToeBean bean) {
 		try {
 			getMongoCollection().save(bean);
 			return true;
@@ -32,7 +32,7 @@ public class TicTacToeCollection {
 		return false;
 	}
 
-	public boolean drop() {
+	boolean drop() {
 		try {
 			getMongoCollection().drop();
 			return true;
