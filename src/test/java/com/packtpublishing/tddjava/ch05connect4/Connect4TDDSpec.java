@@ -42,12 +42,21 @@ public class Connect4TDDSpec {
      */
 
     @Test
-    public void whenDiscOutsideBoardThenRuntimeException() {
+    public void whenDiscOutsideBoardDownThenRuntimeException() {
         int column = -1;
         exception.expect(RuntimeException.class);
         exception.expectMessage("Invalid column " + column);
         tested.putDiscInColumn(column);
     }
+
+    @Test
+    public void whenDiscOutsideBoardUpThenRuntimeException() {
+        int column = 7;
+        exception.expect(RuntimeException.class);
+        exception.expectMessage("Invalid column " + column);
+        tested.putDiscInColumn(column);
+    }
+
 
     @Test
     public void whenFirstDiscInsertedInColumnThenPositionIsZero() {

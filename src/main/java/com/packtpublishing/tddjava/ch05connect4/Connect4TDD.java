@@ -110,37 +110,33 @@ class Connect4TDD {
                     .reduce(String::concat);
 
             if (verticalOpt.isPresent() && winPattern.matcher(verticalOpt.get()).matches())
-                winner = colour;
+                    winner = colour;
 
             if (winner.isEmpty()) {
                 Optional<String> horizontalOpt = Stream.of(board[row]).reduce(String::concat);
                 if (horizontalOpt.isPresent() && winPattern.matcher(horizontalOpt.get()).matches())
                     winner = colour;
-            }
 
-            if (winner.isEmpty()) {
-                int startOffset = Math.min(column, row);
-                int myColumn = column - startOffset;
-                int myRow = row - startOffset;
-                StringJoiner stringJoiner = new StringJoiner("");
-                do {
-                    stringJoiner.add(board[myRow++][myColumn++]);
-                } while (myColumn < COLUMNS && myRow < ROWS);
-                if (winPattern.matcher(stringJoiner.toString()).matches())
-                    winner = currentPlayer;
-            }
-
-            if (winner.isEmpty()) {
-                int startOffset = Math.min(column, ROWS - 1 - row);
-                int myColumn = column - startOffset;
-                int myRow = row + startOffset;
-                StringJoiner stringJoiner = new StringJoiner("");
-                do {
-                    stringJoiner.add(board[myRow--][myColumn++]);
-                } while (myColumn < COLUMNS && myRow >= 0);
-                if (winPattern.matcher(stringJoiner.toString()).matches())
+                if (winPattern.matcher(getWinner(row,column,true).toString()).matches()
+                        || winPattern.matcher(getWinner(row,column,false).toString()).matches() )
                     winner = currentPlayer;
             }
         }
+    }
+
+    private StringJoiner getWinner(int row, int column, Boolean searchWay) {
+        StringJoiner stringJoiner = new StringJoiner("");
+        int startOffset = Math.min(column, searchWay?row:ROWS - 1 - row);
+        int myColumn = column - startOffset;
+        int myRow = searchWay?row - startOffset:row + startOffset;
+        if (searchWay)
+            do {
+                stringJoiner.add(board[myRow++][myColumn++]);
+            } while (myColumn < COLUMNS && myRow < ROWS);
+        else
+            do {
+                stringJoiner.add(board[myRow--][myColumn++]);
+            } while (myColumn < COLUMNS && myRow >= 0);
+        return stringJoiner;
     }
 }

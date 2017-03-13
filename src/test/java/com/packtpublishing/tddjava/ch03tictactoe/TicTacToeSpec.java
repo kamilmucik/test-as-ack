@@ -1,12 +1,12 @@
 package com.packtpublishing.tddjava.ch03tictactoe;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import pl.estrix.exception.OwnRuntimeException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TicTacToeSpec {
 
