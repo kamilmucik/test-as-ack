@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
 
 public class TicTacToeCollection {
 
-	private static final Logger LOG = LoggerFactory.getLogger(TicTacToeCollection.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TicTacToeCollection.class);
 
 	public TicTacToeCollection() throws UnknownHostException {
 		DB db = new MongoClient().getDB("tic-tac-toe");
@@ -27,9 +27,9 @@ public class TicTacToeCollection {
 			getMongoCollection().save(bean);
 			return true;
 		} catch (Exception e) {
-			LOG.warn(e.getMessage());
-			return false;
+			LOGGER.warn("saveMove",e);
 		}
+		return false;
 	}
 
 	public boolean drop() {
@@ -37,8 +37,8 @@ public class TicTacToeCollection {
 			getMongoCollection().drop();
 			return true;
 		} catch (Exception e){
-			LOG.warn(e.getMessage());
-			return false;
+			LOGGER.warn("drop",e);
 		}
+		return false;
 	}
 }
