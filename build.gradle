@@ -66,6 +66,5 @@ sonarqube {
     properties {
         property "sonar.projectName", "Java :: Tests Project"
         property "sonar.projectKey", "org.sonarqube:test-as-ack"
-        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
     }
 }
