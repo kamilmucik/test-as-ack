@@ -44,9 +44,14 @@ dependencies {
 }
 
 test {
+    include '**/*Spec.class'
     jacoco {
         destinationFile = file("${buildDir}/reports/jacoco/jacocoTest.exec")
     }
+}
+
+task testInteg(type: Test) {
+    include '**/*Integ.class'
 }
 
 task codeCoverageReport(type: JacocoReport) {

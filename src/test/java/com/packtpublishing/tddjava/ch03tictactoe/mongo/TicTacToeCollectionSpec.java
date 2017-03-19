@@ -32,20 +32,17 @@ public class TicTacToeCollectionSpec {
 	}
 
 	@Test
-	public void
-	whenInstantiatedThenMongoHasDbNameTicTacToe(){
+	public void	whenInstantiatedThenMongoHasDbNameTicTacToe(){
 		assertEquals("tic-tac-toe",collection.getMongoCollection().getDBCollection().getDB().getName());
 	}
 
 	@Test
-	public void
-	whenInstantiatedThenMongoCollectionHasNameGame(){
+	public void	whenInstantiatedThenMongoCollectionHasNameGame(){
 		assertEquals("game",collection.getMongoCollection().getName());
 	}
 
 	@Test
-	public void
-	whenSaveMoveThenInvokeMongoCollectionSave() {
+	public void	whenSaveMoveThenInvokeMongoCollectionSave() {
 		doReturn(mongoCollection).when(collection) .getMongoCollection();
 		collection.saveMove(bean);
 
@@ -60,8 +57,7 @@ public class TicTacToeCollectionSpec {
 	}
 
 	@Test
-	public void
-	givenExceptionWhenSaveMoveThenReturnFalse() {
+	public void	givenExceptionWhenSaveMoveThenReturnFalse() {
 		doThrow(new MongoException("Bla")).when(mongoCollection).save(any(TicTacToeBean.class));
 		doReturn(mongoCollection).when(collection).getMongoCollection();
 

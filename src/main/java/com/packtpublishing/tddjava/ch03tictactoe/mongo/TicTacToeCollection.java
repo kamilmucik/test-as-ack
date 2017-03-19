@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
 
-class TicTacToeCollection {
+public class TicTacToeCollection {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TicTacToeCollection.class);
 

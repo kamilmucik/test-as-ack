@@ -10,6 +10,9 @@ class TicTacToe {
 
     private static final int SIZE = 3;
 
+    static final String NO_WINNER = "Brak zwyciezcy";
+    public static final String RESULT_DRAW = "Wynik remisowy";
+
     String play(int x, int y) {
         checkAxis(x);
         checkAxis(y);
@@ -18,9 +21,10 @@ class TicTacToe {
         if (isWin(x, y)) {
             return "Wygral " + lastPlayer;
         } else if (isDraw()){
-            return "Wynik remisowy";
-        }else return "Brak zwyciezcy";
+            return RESULT_DRAW;
+        }else return NO_WINNER;
     }
+
 
     private boolean isDraw() {
         for (int x=0; x < SIZE; x++){
